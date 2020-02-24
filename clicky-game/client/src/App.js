@@ -5,6 +5,7 @@ import Game from "./pages/Game";
 // import Score from "./pages/Score";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import Images from "./components/Images";
 
 class App extends React.Component{
   state = {
@@ -29,6 +30,8 @@ class App extends React.Component{
             {/* <Route exact path="/score" component={Score} /> */}
             <Route component={NoMatch} />
           </Switch>
+          <button onClick={this.setTheState}>{mountGame ? "Unm" : "M"}ount Game</button>
+          {mountGame && <Images />}
         </div>
       </Router>
     );
