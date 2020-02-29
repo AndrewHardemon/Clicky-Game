@@ -30,8 +30,8 @@ class App extends React.Component{
             {/* <Route exact path="/score" component={Score} /> */}
             <Route component={NoMatch} />
           </Switch>
-          <button onClick={this.setTheState}>{mountGame ? "Unm" : "M"}ount Game</button>
-          {mountGame && <Images />}
+          {/* <button onClick={this.setTheState}>{mountGame ? "Unm" : "M"}ount Game</button>
+          {mountGame && <Images />} */}
         </div>
       </Router>
     );
