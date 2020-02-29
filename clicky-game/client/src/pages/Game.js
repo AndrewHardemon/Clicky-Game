@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import Jumbotron from "../components/Jumbotron";
 import Images from "../components/Images";
 import API from "../utils/API";
@@ -27,7 +28,7 @@ class Game extends Component{
     },
     players: [],
     name: "",
-    score: "",
+    score: 0,
     lose: false
   }
 
@@ -77,6 +78,8 @@ class Game extends Component{
     console.log(data)
     if(this.state.theImage.img == data){
       console.log("Got it right!")
+      this.state.score += 10;
+      console.log(this.state.score)
       this.state.whichState = true;
       this.setTheState()
       this.setState(prevState =>
@@ -84,9 +87,12 @@ class Game extends Component{
       )
     } else {
       console.log("WRONG")
+      this.props.history.push('/gameover')
     }
     
   }
+
+
 
 
   render() {
@@ -123,6 +129,9 @@ class Game extends Component{
 
 
 }
+
+withRouter(Game)
+
 
 
 export default Game;
