@@ -24,8 +24,8 @@ class Game extends Component{
       num: 0,
       img: 0
     },
-    players: [],
     name: "",
+    id: "",
     score: 0,
     lose: false
   }
@@ -61,7 +61,15 @@ class Game extends Component{
 
   //When it mounts
   componentDidMount() {
-    // this.loadGame();
+    API.getScore(this.props.match.params.id)
+    .then(({data}) =>
+    {
+      console.log(data)
+      this.setState({
+        name: data.name,
+        id: data._id
+      })}
+    ).catch(err => console.log(err))
   }
 
   //When it loads
@@ -75,14 +83,21 @@ class Game extends Component{
     console.log(data)
     if(this.state.theImage.img == data){
       console.log("Got it right!")
+      //Add 10 to the score
       this.state.score += 10;
       console.log(this.state.score)
+      //Add new score to Mongo
+      API.updateScore((this.state.id),
+      {highscore: this.state.score},
+      {new:true}).catch(err => console.log(err))
+      //Change State of the Answer
       this.state.whichState = true;
       this.setTheState()
       this.setState(prevState =>
         ({mountGame: !prevState.mountGame})  
       )
     } else {
+      // If Wrong go to GameOver
       console.log("WRONG")
       this.props.history.push('/gameover')
     }
@@ -96,6 +111,9 @@ class Game extends Component{
           <Col size="md-12">
             <Jumbotron>
               <h1>Memory Game!</h1>
+              <h3>{this.state.name}'s Score is: {this.state.score}
+                  {this.state.id}
+              </h3>
             </Jumbotron>
           </Col>
         </Row>

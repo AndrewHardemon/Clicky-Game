@@ -11,7 +11,10 @@ export default {
   deleteScore: function(id) {
     return axios.delete("/api/scores/" + id)
   },
-  saveScore: function(scoreData){
+  updateScore: function(id, scoreData){
+    return axios.put("/api/scores/" + id, scoreData)
+  },
+  saveUser: function(scoreData){
     return axios.post("/api/scores", scoreData)
   }
 };

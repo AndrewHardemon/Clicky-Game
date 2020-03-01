@@ -48,13 +48,19 @@ class LogIn extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if(this.state.name && !this.state.repeat){
-      API.saveScore({
+      API.saveUser({
         name: this.state.name
       })
         .then(res => this.loadScores())
         .catch(err => console.log(err));
+    } else {
+      //Make ID the user with same name
     }
-    this.props.history.push('/game')
+  }
+
+  runTheGame = () => {
+    console.log(this.state.users)
+    this.props.history.push('/game/'+this.state.users[this.state.users.length-1]._id)
   }
 
   deleteTheScore = (id) => {
@@ -86,6 +92,13 @@ class LogIn extends Component {
             </FormBtn>
           </form>
         </Col>
+      </Row>
+      <Row>
+        <Col size="md-6 sm-12">
+          <button onClick={this.runTheGame}>START</button>
+        </Col>
+      </Row>
+      <Row>
         <Col size="md-6 sm-12">
           <Jumbotron>
             <h1>High Scores</h1>

@@ -26,8 +26,9 @@ class App extends React.Component{
         <div>
           <Nav />
           <Switch>
-            <Route exact path="/" component={LogIn} />
+            <Route exact path="/" component={LogIn} />\
             <Route exact path="/game" component={Game} />
+            <Route exact path="/game/:id" component={Game} />
             <Route exact path="/gameover" component={GameOver} />
             <Route component={NoMatch} />
           </Switch>
