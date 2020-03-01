@@ -5,13 +5,10 @@ import Images from "../components/Images";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
-// import { Input, TextArea, FormBtn } from "../components/Form";
 //image imports
 import Occultism from "../components/Images/pictures/Occultism.png"
 import Face from "../components/Images/pictures/Face.png"
 import Sulfur from "../components/Images/pictures/Sulfur.png"
-import GameOver from "./GameOver";
 
 class Game extends Component{
 
@@ -64,13 +61,14 @@ class Game extends Component{
 
   //When it mounts
   componentDidMount() {
-    this.loadGame();
+    // this.loadGame();
   }
 
   //When it loads
-  loadGame = () => {
-    console.log("mount works")
-  }
+  // loadGame = () => {
+  //   console.log("mount works");
+  //   API.getScore
+  // }
 
   //Randomize the Images
   checkImg = (e, data) => {

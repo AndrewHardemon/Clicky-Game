@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import LogIn from "./pages/LogIn";
+import LogIn from "./pages/LogIn";
 import Game from "./pages/Game";
 import GameOver from "./pages/GameOver";
 // import Score from "./pages/Score";
@@ -26,7 +26,7 @@ class App extends React.Component{
         <div>
           <Nav />
           <Switch>
-            <Route exact path="/" component={Game} />
+            <Route exact path="/" component={LogIn} />
             <Route exact path="/game" component={Game} />
             <Route exact path="/gameover" component={GameOver} />
             <Route component={NoMatch} />

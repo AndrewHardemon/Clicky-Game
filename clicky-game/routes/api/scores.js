@@ -8,7 +8,7 @@ router.route("/")
 
 //For getting the score for the user
 router.route("/:id")
-  .get(scoreController.findById)
+  .get(scoreController.findByName)
   .put(scoreController.update)
   .delete(scoreController.remove)
 
