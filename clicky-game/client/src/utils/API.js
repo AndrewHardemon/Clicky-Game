@@ -5,6 +5,9 @@ export default {
   getScores: function() {
     return axios.get("/api/scores")
   },
+  getHighest: function() {
+    return axios.get("/api/scores")
+  },
   getScore: function(id) {
     return axios.get("/api/scores/" + id)
   },

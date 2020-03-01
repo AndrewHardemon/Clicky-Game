@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const scoreSchema = new Schema({
   name: { type: String, required: true },
-  highscore: { type: Number },
+  highscore: { type: Number, required: true },
   date: {type: Date, default: Date.now }
 })
 

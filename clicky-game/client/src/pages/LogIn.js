@@ -11,6 +11,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 class LogIn extends Component {
   state = {
     users: [],
+    user: {},
     name: "",
     id: "",
     repeat: false
@@ -20,14 +21,19 @@ class LogIn extends Component {
     this.loadScores();
   }
 
-  
-
   loadScores = () => {
+    // Get highscore list
     API.getScores()
       .then(res =>
         this.setState({ users: res.data, name: "", id: ""})
       )
       .catch(err => console.log(err))
+    // Get current user
+    API.getScores()
+    .then(res =>
+      this.setState({ user: res.data[res.data.length-1]})
+    )
+    .catch(err => console.log(err))
   }
 
   checkName = id => {
@@ -49,7 +55,8 @@ class LogIn extends Component {
     event.preventDefault();
     if(this.state.name && !this.state.repeat){
       API.saveUser({
-        name: this.state.name
+        name: this.state.name,
+        highscore: 0
       })
         .then(res => this.loadScores())
         .catch(err => console.log(err));
@@ -60,7 +67,8 @@ class LogIn extends Component {
 
   runTheGame = () => {
     console.log(this.state.users)
-    this.props.history.push('/game/'+this.state.users[this.state.users.length-1]._id)
+    this.props.history.push('/game')
+    // this.props.history.push('/game/'+this.state.users[this.state.users.length-1]._id)
   }
 
   deleteTheScore = (id) => {
@@ -109,7 +117,7 @@ class LogIn extends Component {
                 <ListItem key={user._id}>
                   <Link to={"/scores/" + user._id}>
                     <strong>
-                      {user.name} : {user.score}
+                      {user.name} : {user.highscore}
                     </strong>
                   </Link>
                   <DeleteBtn onClick={() => this.deleteTheScore(user._id)} />

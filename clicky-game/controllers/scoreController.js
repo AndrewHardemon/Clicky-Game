@@ -4,7 +4,14 @@ module.exports = {
   findAll: function(req, res){
     db.Score
       .find(req.query)
-      .sort({ highscore: 1})
+      .sort({ date: 1})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err))
+  },
+  findHighest: function(req, res){
+    db.Score
+      .find(req.query)
+      .sort({ highscore: -1})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err))
   },

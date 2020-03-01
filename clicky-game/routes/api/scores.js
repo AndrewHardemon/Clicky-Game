@@ -4,6 +4,7 @@ const scoreController = require("../../controllers/scoreController");
 //For making a username
 router.route("/")
   .get(scoreController.findAll)
+  .get(scoreController.findHighest)
   .post(scoreController.create)
 
 //For getting the score for the user

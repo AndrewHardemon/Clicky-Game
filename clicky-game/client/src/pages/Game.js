@@ -61,15 +61,15 @@ class Game extends Component{
 
   //When it mounts
   componentDidMount() {
-    API.getScore(this.props.match.params.id)
-    .then(({data}) =>
-    {
-      console.log(data)
-      this.setState({
-        name: data.name,
-        id: data._id
-      })}
-    ).catch(err => console.log(err))
+    API.getScores()
+      .then(res =>
+        {this.setState({ users: res.data, name: res.data[res.data.length-1].name, id: res.data[res.data.length-1]._id})
+        console.log(this.state.score)
+        console.log(this.state.name)
+        console.log(this.state.users)
+        }
+      )
+      .catch(err => console.log(err))
   }
 
   //When it loads
@@ -77,19 +77,34 @@ class Game extends Component{
   //   console.log("mount works");
   //   API.getScore
   // }
+  // increaseScore = () => {
+  //   //Add 10 to the score
+  //   console.log(this.state.score)
+  //   let newScore = this.state.score+10
+  //   this.setState({ 
+  //     score: newScore
+  //   })
+  //   console.log(this.state.score)
+  // }
+
 
   //Randomize the Images
   checkImg = (e, data) => {
     console.log(data)
+    console.log(this)
     if(this.state.theImage.img == data){
       console.log("Got it right!")
-      //Add 10 to the score
-      this.state.score += 10;
-      console.log(this.state.score)
+      //Update the Score
+      var newScore = (this.state.score + 10)
+      console.log(newScore)
+      this.setState({ 
+        score: newScore
+      })
       //Add new score to Mongo
-      API.updateScore((this.state.id),
-      {highscore: this.state.score},
-      {new:true}).catch(err => console.log(err))
+      API.updateScore(this.state.id,
+        { highscore: newScore })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
       //Change State of the Answer
       this.state.whichState = true;
       this.setTheState()
@@ -112,7 +127,6 @@ class Game extends Component{
             <Jumbotron>
               <h1>Memory Game!</h1>
               <h3>{this.state.name}'s Score is: {this.state.score}
-                  {this.state.id}
               </h3>
             </Jumbotron>
           </Col>
