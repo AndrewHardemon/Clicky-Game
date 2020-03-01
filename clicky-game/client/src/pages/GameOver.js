@@ -3,7 +3,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 
 // Need to add API for score or just use props
-function GameOver() {
+function GameOver(props) {
   return (
     <Container fluid>
       <Row>

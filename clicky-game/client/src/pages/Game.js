@@ -11,6 +11,7 @@ import { Col, Row, Container } from "../components/Grid";
 import Occultism from "../components/Images/pictures/Occultism.png"
 import Face from "../components/Images/pictures/Face.png"
 import Sulfur from "../components/Images/pictures/Sulfur.png"
+import GameOver from "./GameOver";
 
 class Game extends Component{
 
@@ -69,8 +70,6 @@ class Game extends Component{
   //When it loads
   loadGame = () => {
     console.log("mount works")
-
-
   }
 
   //Randomize the Images
@@ -89,11 +88,7 @@ class Game extends Component{
       console.log("WRONG")
       this.props.history.push('/gameover')
     }
-    
   }
-
-
-
 
   render() {
     const {mountGame, whichState, images, theImage} = this.state;
@@ -126,11 +121,9 @@ class Game extends Component{
       </Container>
     )
   }
-
-
 }
 
-withRouter(Game)
+
 
 
 
