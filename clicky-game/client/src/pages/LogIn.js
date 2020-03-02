@@ -11,7 +11,7 @@ import { Input, StartBtn, FormBtn } from "../components/Form";
 class LogIn extends Component {
   state = {
     users: [],
-    // user: {},
+    allUsers: [],
     name: "",
     id: "",
     userState: false
@@ -33,21 +33,13 @@ class LogIn extends Component {
           for(let i = res.data.length-6; i < res.data.length; i++){
             temp.push(res.data[i]);
           }
-            this.setState({ users: temp })
+            this.setState({ allUsers: res.data, users: temp })
           } else {
-            this.setState({ users: res.data, name: "", id: ""})
+            this.setState({ allUsers: res.data, users: res.data, name: "", id: ""})
           }
         }
       )
       .catch(err => console.log(err))
-  }
-
-  checkName = (name) => {
-    this.state.users.map(users => {
-      if(users.name === name){
-        console.log("same name")
-      }
-    })
   }
 
 
@@ -60,24 +52,58 @@ class LogIn extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
-
-
-    if(this.state.name && !this.state.repeat){
+    let userIndex = 0;
+    let repeat = false;
+    //See if there is a repeat name
+    for(let i = 0; i < this.state.allUsers.length; i++){
+      if(this.state.allUsers[i].name === this.state.name){
+        userIndex = i;
+        repeat = true;
+        break;
+      }
+    }
+    //If there is a repeat name
+    if(repeat){
+      console.log("Found previous user")
+      const temp = this.state.allUsers[userIndex]
+      let newUserList = this.state.allUsers;
+      // Reorganize the list to have the repeat name first
+      for(let j = userIndex; j < newUserList.length; j++){
+        if(j === newUserList.length-1){
+          newUserList[j] = temp
+          console.log(newUserList)
+        } else {
+          newUserList[j] = newUserList[j+1]
+          console.log(newUserList)
+        }
+      }
+      // Delete the old list
+      newUserList.map(users => {
+        API.deleteScore(users._id)
+        .then(res => this.loadScores())
+        .catch(err => console.log(err));
+      })
+      // Create the new list
+      newUserList.map(users => {
+        API.saveUser({
+          name: users.name,
+          highscore: users.highscore
+        })
+      })
+    // If no repeat just save new name
+    } else {
+      console.log("No previous User")
       API.saveUser({
         name: this.state.name,
         highscore: 0
       })
-        .then(res => this.loadScores())
-        .catch(err => console.log(err));
-    } else {
-      //Make ID the user with same name
+      .then(res => this.loadScores())
+      .catch(err => console.log(err));
     }
-    //Shows new user has been made
+    //Show User has been picked
     this.setState({
       userState: true
     });
-    this.runTheGame()
   }
 
   runTheGame = () => {
@@ -106,12 +132,12 @@ class LogIn extends Component {
               name="name"
               placeholder="Username"
             />
-            {/* <StartBtn
+            <StartBtn
               disabled={!(this.state.userState)}
               onClick={this.runTheGame}
             >
               Start
-            </StartBtn> */}
+            </StartBtn>
             <FormBtn
               disabled={!(this.state.name)}
               onClick={this.handleFormSubmit}

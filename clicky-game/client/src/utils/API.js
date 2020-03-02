@@ -16,5 +16,8 @@ export default {
   },
   saveUser: function(scoreData){
     return axios.post("/api/scores", scoreData)
+  },
+  updateAll: function(scoreData){
+    return axios.put("/api/scores", scoreData)
   }
 };

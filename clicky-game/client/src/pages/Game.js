@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-// import { withRouter } from "react-router-dom";
 import Jumbotron from "../components/Jumbotron";
 import Images from "../components/Images";
 import API from "../utils/API";
-// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 //image imports
 import Occultism from "../components/Images/pictures/Occultism.png"
