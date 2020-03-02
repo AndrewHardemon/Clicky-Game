@@ -9,6 +9,8 @@ import { Col, Row, Container } from "../components/Grid";
 import Occultism from "../components/Images/pictures/Occultism.png"
 import Face from "../components/Images/pictures/Face.png"
 import Sulfur from "../components/Images/pictures/Sulfur.png"
+import Dog from "../components/Images/pictures/Dog.png"
+import Thumb from "../components/Images/pictures/Thumb.png"
 
 class Game extends Component{
 
@@ -18,7 +20,9 @@ class Game extends Component{
     images: [
       {name: Occultism, data: 0}, 
       {name: Face, data: 1},
-      {name: Sulfur, data: 2}
+      {name: Sulfur, data: 2},
+      {name: Dog, data: 3},
+      {name: Thumb, data: 4}
     ],
     theImage: {
       num: 0,
@@ -40,7 +44,7 @@ class Game extends Component{
     var that = this;
     if(this.state.whichState){
       // Get random number
-      let num = Math.floor(Math.random() * 3);//this.state.images.length
+      let num = Math.floor(Math.random() * this.state.images.length);//this.state.images.length
       console.log(num);
       this.state.theImage.num = num;
       this.state.theImage.img = this.state.images[num].data;
@@ -71,22 +75,6 @@ class Game extends Component{
       )
       .catch(err => console.log(err))
   }
-
-  //When it loads
-  // loadGame = () => {
-  //   console.log("mount works");
-  //   API.getScore
-  // }
-  // increaseScore = () => {
-  //   //Add 10 to the score
-  //   console.log(this.state.score)
-  //   let newScore = this.state.score+10
-  //   this.setState({ 
-  //     score: newScore
-  //   })
-  //   console.log(this.state.score)
-  // }
-
 
   //Randomize the Images
   checkImg = (e, data) => {
@@ -145,6 +133,8 @@ class Game extends Component{
             <img src={images[0].name} onClick={((e) => this.checkImg(e, images[0].data))}></img>
             <img src={images[1].name} onClick={((e) => this.checkImg(e, images[1].data))}></img> 
             <img src={images[2].name} onClick={((e) => this.checkImg(e, images[2].data))}></img> 
+            <img src={images[3].name} onClick={((e) => this.checkImg(e, images[3].data))}></img> 
+            <img src={images[4].name} onClick={((e) => this.checkImg(e, images[4].data))}></img> 
             </Images> }
           </Col>
         </Row>

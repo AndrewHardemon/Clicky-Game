@@ -6,7 +6,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, StartBtn, FormBtn } from "../components/Form";
 
 class LogIn extends Component {
   state = {
@@ -28,21 +28,15 @@ class LogIn extends Component {
         this.setState({ users: res.data, name: "", id: ""})
       )
       .catch(err => console.log(err))
-    // Get current user
-    API.getScores()
-    .then(res =>
-      this.setState({ user: res.data[res.data.length-1]})
-    )
-    .catch(err => console.log(err))
   }
 
-  checkName = id => {
-    API.getScore(id)
-      .then(res =>
-        this.setState({ name: res.data.name, id: res.data._id})  
-      )
-      .catch(err => console.log(err));
-  }
+  // checkName = id => {
+  //   API.getScore(id)
+  //     .then(res =>
+  //       this.setState({ name: res.data.name, id: res.data._id})  
+  //     )
+  //     .catch(err => console.log(err));
+  // }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -63,6 +57,7 @@ class LogIn extends Component {
     } else {
       //Make ID the user with same name
     }
+    // this.runTheGame()
   }
 
   runTheGame = () => {
@@ -92,6 +87,12 @@ class LogIn extends Component {
               name="name"
               placeholder="Username"
             />
+            <StartBtn
+              // disabled={!(this.state.name)}
+              onClick={this.runTheGame}
+            >
+              Start
+            </StartBtn>
             <FormBtn
               disabled={!(this.state.name)}
               onClick={this.handleFormSubmit}
@@ -99,11 +100,6 @@ class LogIn extends Component {
               Submit
             </FormBtn>
           </form>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="md-6 sm-12">
-          <button onClick={this.runTheGame}>START</button>
         </Col>
       </Row>
       <Row>

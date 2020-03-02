@@ -25,3 +25,11 @@ export function FormBtn(props) {
     </button>
   );
 }
+
+export function StartBtn(props) {
+  return (
+    <button {...props} style={{ float: "left", marginBottom: 10 }} className="btn btn-danger">
+      {props.children}
+    </button>
+  );
+}
