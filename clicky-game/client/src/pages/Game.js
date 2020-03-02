@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 import Jumbotron from "../components/Jumbotron";
 import Images from "../components/Images";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 //image imports
 import Occultism from "../components/Images/pictures/Occultism.png"
@@ -76,6 +76,15 @@ class Game extends Component{
       .catch(err => console.log(err))
   }
 
+  shuffleArray = (array) => {
+    for(let i = array.length-1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i+1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
   //Randomize the Images
   checkImg = (e, data) => {
     console.log(data)
@@ -130,11 +139,10 @@ class Game extends Component{
             {/* Shows Several */}
             {mountGame && !whichState && <Images>
             <h1>Pick the right image</h1>
-            <img src={images[0].name} onClick={((e) => this.checkImg(e, images[0].data))}></img>
-            <img src={images[1].name} onClick={((e) => this.checkImg(e, images[1].data))}></img> 
-            <img src={images[2].name} onClick={((e) => this.checkImg(e, images[2].data))}></img> 
-            <img src={images[3].name} onClick={((e) => this.checkImg(e, images[3].data))}></img> 
-            <img src={images[4].name} onClick={((e) => this.checkImg(e, images[4].data))}></img> 
+              {this.shuffleArray(images)}
+              {images.map(image => (
+              <img src={image.name} onClick={((e) => this.checkImg(e, image.data))}></img>
+              ))}
             </Images> }
           </Col>
         </Row>

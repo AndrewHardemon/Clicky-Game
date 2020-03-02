@@ -11,10 +11,10 @@ import { Input, StartBtn, FormBtn } from "../components/Form";
 class LogIn extends Component {
   state = {
     users: [],
-    user: {},
+    // user: {},
     name: "",
     id: "",
-    repeat: false
+    userState: false
   }
 
   componentDidMount(){
@@ -25,18 +25,31 @@ class LogIn extends Component {
     // Get highscore list
     API.getScores()
       .then(res =>
-        this.setState({ users: res.data, name: "", id: ""})
+        { 
+        // Check if Userlist is longer than 6 people
+        if(res.data.length >= 6){
+          let temp = [];
+          // Only grab the newest 6
+          for(let i = res.data.length-6; i < res.data.length; i++){
+            temp.push(res.data[i]);
+          }
+            this.setState({ users: temp })
+          } else {
+            this.setState({ users: res.data, name: "", id: ""})
+          }
+        }
       )
       .catch(err => console.log(err))
   }
 
-  // checkName = id => {
-  //   API.getScore(id)
-  //     .then(res =>
-  //       this.setState({ name: res.data.name, id: res.data._id})  
-  //     )
-  //     .catch(err => console.log(err));
-  // }
+  checkName = (name) => {
+    this.state.users.map(users => {
+      if(users.name === name){
+        console.log("same name")
+      }
+    })
+  }
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -47,6 +60,9 @@ class LogIn extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+
+
+
     if(this.state.name && !this.state.repeat){
       API.saveUser({
         name: this.state.name,
@@ -57,13 +73,16 @@ class LogIn extends Component {
     } else {
       //Make ID the user with same name
     }
-    // this.runTheGame()
+    //Shows new user has been made
+    this.setState({
+      userState: true
+    });
+    this.runTheGame()
   }
 
   runTheGame = () => {
     console.log(this.state.users)
     this.props.history.push('/game')
-    // this.props.history.push('/game/'+this.state.users[this.state.users.length-1]._id)
   }
 
   deleteTheScore = (id) => {
@@ -87,12 +106,12 @@ class LogIn extends Component {
               name="name"
               placeholder="Username"
             />
-            <StartBtn
-              // disabled={!(this.state.name)}
+            {/* <StartBtn
+              disabled={!(this.state.userState)}
               onClick={this.runTheGame}
             >
               Start
-            </StartBtn>
+            </StartBtn> */}
             <FormBtn
               disabled={!(this.state.name)}
               onClick={this.handleFormSubmit}
@@ -105,7 +124,7 @@ class LogIn extends Component {
       <Row>
         <Col size="md-6 sm-12">
           <Jumbotron>
-            <h1>High Scores</h1>
+            <h1>Recent Players</h1>
           </Jumbotron>
           {this.state.users.length ? (
             <List>

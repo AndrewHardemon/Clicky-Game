@@ -13,7 +13,6 @@ class GameOver extends Component{
     score: ""
   }
 
-
   componentDidMount() {
     console.log("gameover")
     API.getScores()
@@ -26,7 +25,6 @@ class GameOver extends Component{
       )
       .catch(err => console.log(err))
   }
-  
   
   render(){
     return (
@@ -42,8 +40,6 @@ class GameOver extends Component{
       </Container>
     )
   }
-
-
 
 }
 
