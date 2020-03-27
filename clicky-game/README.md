@@ -16,3 +16,5 @@ A Memory Game made with React
 * You will see your `score` as you pick the right answer
 
 * When you `GameOver` you will see your score and when you go back to `LogIn` you will see your updated score 
+
+![gameplay](https://raw.githubusercontent.com/AeroAtlas/Clicky-Game/master/ImagesReadMe/Click-GamePlay.gif)
