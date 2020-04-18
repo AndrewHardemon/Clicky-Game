@@ -1,5 +1,8 @@
 # Clicky-Game
-A Memory Game made with React
+A Memory Game made with React, MongoDB, Express, JavaScript, and CSS
+
+## Summary
+Log in and click start. Then you start the game and click the image you see pop on scree.
 
 ## Instructions
 
