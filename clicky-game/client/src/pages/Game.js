@@ -44,6 +44,10 @@ class Game extends Component{
       // Get random number
       let num = Math.floor(Math.random() * this.state.images.length);//this.state.images.length
       console.log(num);
+      // this.setState({
+      //   num: num,
+      //   img: this.state.images[num].data
+      // })
       this.state.theImage.num = num;
       this.state.theImage.img = this.state.images[num].data;
       console.log(this.state.theImage)
