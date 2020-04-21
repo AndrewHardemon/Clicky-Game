@@ -91,7 +91,7 @@ class Game extends Component{
   checkImg = (e, data) => {
     console.log(data)
     console.log(this)
-    if(this.state.theImage.img == data){
+    if(this.state.theImage.img === data){
       console.log("Got it right!")
       //Update the Score
       var newScore = (this.state.score + 10)
@@ -136,14 +136,14 @@ class Game extends Component{
             {/* Shows one image */}
             {mountGame && whichState && <Images>
             <h1>Try to remember</h1>
-            <img src={images[theImage.num].name}></img> 
+            <img src={images[theImage.num].name}  alt=""></img> 
             </Images> }
             {/* Shows Several */}
             {mountGame && !whichState && <Images>
             <h1>Pick the right image</h1>
               {this.shuffleArray(images)}
               {images.map(image => (
-              <img src={image.name} onClick={((e) => this.checkImg(e, image.data))}></img>
+              <img src={image.name} alt="" onClick={((e) => this.checkImg(e, image.data))}></img>
               ))}
             </Images> }
           </Col>

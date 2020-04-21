@@ -7,18 +7,8 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
 class App extends React.Component{
-  state = {
-    mountGame: false
-  }
-
-  setTheState = () => {
-    this.setState(prevState =>
-      ({mountGame: !prevState.mountGame})  
-    )
-  }
 
   render(){
-    const {mountGame} = this.state;
     return (
       <Router>
         <div>
