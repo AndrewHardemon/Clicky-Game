@@ -135,12 +135,12 @@ class Game extends Component{
             <button onClick={this.setTheState}>St{mountGame ? "op" : "art"} Game</button>
             {/* Shows one image */}
             {mountGame && whichState && <Images>
-            <h1>Try to remember</h1>
+            <h1 className="gameH1">Try to remember</h1>
             <img src={images[theImage.num].name}  alt=""></img> 
             </Images> }
             {/* Shows Several */}
             {mountGame && !whichState && <Images>
-            <h1>Pick the right image</h1>
+            <h1 className="gameH1">Pick the right image</h1>
               {this.shuffleArray(images)}
               {images.map(image => (
               <img src={image.name} alt="" onClick={((e) => this.checkImg(e, image.data))}></img>
