@@ -4,7 +4,6 @@ import "./style.css";
 function Jumbotron({ children }) {
   return (
     <div
-      style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center", backgroundColor: "darkgrey", color: "blue", border: "5px ridge black", fontFamily: 'longa_iberica'}}
       className="jumbotron"
     >
       {children}
