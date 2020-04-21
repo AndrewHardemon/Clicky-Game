@@ -4,11 +4,13 @@ import Images from "../components/Images";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 //image imports
-import Occultism from "../components/Images/pictures/Occultism.png"
+import Monke from "../components/Images/pictures/Monke.png"
 import Face from "../components/Images/pictures/Face.png"
 import Sulfur from "../components/Images/pictures/Sulfur.png"
 import Dog from "../components/Images/pictures/Dog.png"
 import Thumb from "../components/Images/pictures/Thumb.png"
+import Morshu from "../components/Images/pictures/Morshu.png"
+import Scane from "../components/Images/pictures/Scane.png"
 
 class Game extends Component{
 
@@ -16,11 +18,13 @@ class Game extends Component{
     mountGame: false,
     whichState: true,
     images: [
-      {name: Occultism, data: 0}, 
+      {name: Monke, data: 0}, 
       {name: Face, data: 1},
       {name: Sulfur, data: 2},
       {name: Dog, data: 3},
-      {name: Thumb, data: 4}
+      {name: Thumb, data: 4},
+      {name: Morshu, data: 5},
+      {name: Scane, data: 6}
     ],
     theImage: {
       num: 0,

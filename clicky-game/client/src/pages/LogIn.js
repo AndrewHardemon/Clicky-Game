@@ -156,7 +156,7 @@ class LogIn extends Component {
             <List>
               {this.state.users.map(user => (
                 <ListItem key={user._id}>
-                  <Link to={"/scores/" + user._id}>
+                  <Link to={""}>
                     <strong>
                       {user.name} : {user.highscore}
                     </strong>
