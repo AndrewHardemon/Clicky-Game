@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, StartBtn, FormBtn } from "../components/Form";
+import Thumb from "../components/Images/pictures/Thumb.png"
 
 class LogIn extends Component {
   state = {
@@ -168,6 +169,11 @@ class LogIn extends Component {
           ) : (
             <h3>No Results to Display</h3>
           )}
+        </Col>
+        <Col size="md-6 sm-12">
+          <Link to={""}>
+            <img style={{width: "300px"}} src={Thumb} alt=""></img>
+          </Link>
         </Col>
       </Row>
     </Container>
