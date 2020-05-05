@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
+import '../App.css';
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
@@ -124,7 +125,7 @@ class LogIn extends Component {
       <Row>
         <Col size="md-12">
           <Jumbotron>
-            <h1>Log In to play the Memory Game!</h1>
+            <h1 id="helloJumbo">Log-in to play the Clicky Game!</h1>
           </Jumbotron>
           <form>
             <Input
@@ -172,7 +173,7 @@ class LogIn extends Component {
         </Col>
         <Col size="md-6 sm-12">
           <Link to={""}>
-            <img style={{width: "300px"}} src={Thumb} alt=""></img>
+            <img id="helloThumb" src={Thumb} alt=""></img>
           </Link>
         </Col>
       </Row>
