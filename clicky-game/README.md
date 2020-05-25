@@ -1,5 +1,6 @@
 # Clicky-Game
 A Memory Game made with React, MongoDB, Express, JavaScript, and CSS
+Live Site - https://memory-game-atlas.herokuapp.com/
 
 ## Summary
 Log in and click start. Then you start the game and click the image you see pop on scree.
