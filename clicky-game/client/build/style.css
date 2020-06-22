@@ -1,8 +1,0 @@
-body {
-  background-image: url(./mediaFiles/bgPic.jpg);
-}
-
-.gameH1{
-  color:whitesmoke;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-} 
